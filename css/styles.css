@@ -140,23 +140,32 @@
     content:""; flex:1; height:1px; background:var(--line);
   }
 
+  /* Slim vertical scrubber pinned to the right edge, in the same spot as a native scrollbar.
+     Press/drag along it to jump between eras; a floating label shows the era under the pointer. */
   .era-nav{
-    position:fixed; left:calc(50% + 614px); top:82px;
-    z-index:15; max-height:calc(100vh - 102px); overflow-y:auto; max-width:220px;
-    display:flex; flex-direction:column; gap:1px;
-    padding:4px 0 4px 14px; border-left:1px solid var(--line);
-    opacity:0; pointer-events:none; transition:opacity .25s ease;
+    position:fixed; right:4px; top:50%; transform:translateY(-50%);
+    width:20px; height:min(70vh, 640px); z-index:30;
+    display:flex; flex-direction:column; justify-content:space-between; align-items:center;
+    padding:16px 0; touch-action:none; cursor:pointer;
   }
-  .era-nav.visible{ opacity:1; pointer-events:auto; }
   .era-nav a{
-    display:block; padding:6px 10px; margin-left:-15px; border-left:2px solid transparent;
-    font-size:0.66rem; text-transform:uppercase; letter-spacing:0.05em; white-space:nowrap;
-    overflow:hidden; text-overflow:ellipsis;
-    color:var(--ink-faint); text-decoration:none;
+    display:flex; align-items:center; justify-content:center;
+    flex:1; width:100%; text-decoration:none;
   }
-  .era-nav a:hover, .era-nav a:focus-visible{ color:var(--ink-dim); }
-  .era-nav a.active{ color:#fff; border-left-color:#fff; }
-  @media (max-width: 1660px){ .era-nav{ display:none; } }
+  .era-tick{
+    width:4px; height:4px; border-radius:50%; background:var(--ink-faint);
+    transition:width .15s ease, height .15s ease, background .15s ease;
+  }
+  .era-nav a:hover .era-tick, .era-nav a:focus-visible .era-tick{ background:var(--ink-dim); }
+  .era-nav a.active .era-tick{ width:7px; height:7px; background:#fff; }
+
+  .era-nav-label{
+    position:fixed; z-index:31; transform:translateY(-50%);
+    background:#fff; color:#000; font-family:var(--font-display); font-weight:700;
+    font-size:0.82rem; padding:7px 14px; white-space:nowrap; pointer-events:none;
+    box-shadow:var(--shadow);
+  }
+  .era-nav-label[hidden]{ display:none; }
 
   .grid{
     display:grid; grid-template-columns:repeat(auto-fill, minmax(230px,1fr)); gap:20px;
