@@ -63,6 +63,30 @@ window.addEventListener("resize", () => {
   }, 400);
 });
 
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const BG_PARALLAX_FACTOR = 0.25;
+const BG_PARALLAX_MAX = 60;
+
+function updateBgParallax(){
+  const el = document.getElementById("bgCollage");
+  if (!el) return;
+  const offset = Math.min(window.scrollY * BG_PARALLAX_FACTOR, BG_PARALLAX_MAX);
+  el.style.transform = `translateY(${-offset}px)`;
+}
+
+if (!prefersReducedMotion) {
+  let bgParallaxTicking = false;
+  window.addEventListener("scroll", () => {
+    if (bgParallaxTicking) return;
+    bgParallaxTicking = true;
+    requestAnimationFrame(() => {
+      updateBgParallax();
+      bgParallaxTicking = false;
+    });
+  }, { passive: true });
+  updateBgParallax();
+}
+
 const chipsEl = document.getElementById("chips");
 const allChip = document.createElement("button");
 allChip.className = "chip"; allChip.textContent = "All"; allChip.setAttribute("aria-pressed","true");
@@ -84,19 +108,27 @@ chipsEl.addEventListener("click", (e) => {
   render();
 });
 
-const orderToggleEl = document.getElementById("orderToggle");
+const yearSortUpEl = document.getElementById("yearSortUp");
+const yearSortDownEl = document.getElementById("yearSortDown");
 const storedOrderPref = localStorage.getItem("elvisReverseOrder");
 let reverseOrder = storedOrderPref === null ? true : storedOrderPref === "true";
-orderToggleEl.setAttribute("aria-pressed", String(reverseOrder));
-orderToggleEl.textContent = reverseOrder ? "Earliest" : "Latest";
 
-orderToggleEl.addEventListener("click", () => {
-  reverseOrder = !reverseOrder;
-  orderToggleEl.setAttribute("aria-pressed", String(reverseOrder));
-  orderToggleEl.textContent = reverseOrder ? "Earliest" : "Latest";
+function updateYearSortButtons(){
+  yearSortUpEl.setAttribute("aria-pressed", String(reverseOrder));
+  yearSortDownEl.setAttribute("aria-pressed", String(!reverseOrder));
+}
+updateYearSortButtons();
+
+function setReverseOrder(value){
+  if (reverseOrder === value) return;
+  reverseOrder = value;
+  updateYearSortButtons();
   localStorage.setItem("elvisReverseOrder", String(reverseOrder));
   render();
-});
+}
+
+yearSortUpEl.addEventListener("click", () => setReverseOrder(true));
+yearSortDownEl.addEventListener("click", () => setReverseOrder(false));
 
 const qInput = document.getElementById("q");
 const suggestionsEl = document.getElementById("suggestions");
