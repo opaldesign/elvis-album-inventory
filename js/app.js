@@ -1,12 +1,5 @@
 const ENABLE_PREVIEWS = true;
 
-function eraOf(year){
-  if (year <= 1959) return { name:"Sun Sessions to Stardom", range:"1956–1959" };
-  if (year <= 1968) return { name:"The Hollywood Years", range:"1960–1968" };
-  if (year <= 1971) return { name:"American Sound & the Comeback", range:"1969–1971" };
-  return { name:"Aloha to the End", range:"1972–1977" };
-}
-
 function realTrackCount(tracklist){
   return tracklist.filter(t => !t.startsWith("—")).length;
 }
@@ -116,21 +109,11 @@ function render(){
 
   emptyEl.hidden = visible.length !== 0;
 
-  let currentEra = null;
-  let grid = null;
+  const grid = document.createElement("div");
+  grid.className = "grid";
+  erasEl.appendChild(grid);
 
   visible.forEach(album => {
-    const era = eraOf(album.year);
-    if (era.name !== currentEra) {
-      currentEra = era.name;
-      const section = document.createElement("section");
-      section.className = "era";
-      section.innerHTML = `<div class="era-head"><h2>${era.name}</h2><span class="range">${era.range}</span></div>`;
-      grid = document.createElement("div");
-      grid.className = "grid";
-      section.appendChild(grid);
-      erasEl.appendChild(section);
-    }
     const card = renderCard(album);
     grid.appendChild(card);
     revealObserver.observe(card);

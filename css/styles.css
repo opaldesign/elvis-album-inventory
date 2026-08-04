@@ -104,21 +104,6 @@
   }
   .result-count{font-size:0.78rem; color:var(--ink-faint); white-space:nowrap;}
 
-  /* ---------- Era sections ---------- */
-  .era{margin-top:48px;}
-  .era-head{
-    display:flex; align-items:baseline; gap:14px; margin-bottom:20px;
-  }
-  .era-head h2{
-    font-family:var(--font-display); font-size:1.3rem; margin:0; white-space:nowrap; color:#fff;
-  }
-  .era-head .range{
-    font-variant-numeric:tabular-nums; color:var(--ink-faint); font-size:0.82rem;
-  }
-  .era-head::after{
-    content:""; flex:1; height:1px; background:var(--line);
-  }
-
   .grid{
     display:grid; grid-template-columns:repeat(auto-fill, minmax(230px,1fr)); gap:20px;
   }
