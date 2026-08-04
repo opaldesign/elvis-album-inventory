@@ -164,7 +164,11 @@ function escAttr(s){
 const PLAY_ICON = `<svg viewBox="0 0 24 24" width="10" height="10" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>`;
 const PAUSE_ICON = `<svg viewBox="0 0 24 24" width="10" height="10" fill="currentColor" aria-hidden="true"><rect x="6" y="4.5" width="4.5" height="15"/><rect x="13.5" y="4.5" width="4.5" height="15"/></svg>`;
 
-function trackItemsHtml(tracklist){
+function getPreview(albumTitle, trackName){
+  return ALBUM_TRACK_PREVIEWS[albumTitle + "|||" + trackName] || TRACK_PREVIEWS[trackName];
+}
+
+function trackItemsHtml(albumTitle, tracklist){
   return tracklist.map((t, i) => {
     if (t.startsWith("—")) {
       return `<li class="divider">${t.replace(/—/g,"").trim()}</li>`;
@@ -173,7 +177,7 @@ function trackItemsHtml(tracklist){
     const safe = escAttr(t);
     let btn = "";
     if (ENABLE_PREVIEWS) {
-      const preview = TRACK_PREVIEWS[t];
+      const preview = getPreview(albumTitle, t);
       btn = preview
         ? `<button type="button" class="play-btn" data-track="${safe}" data-index="${i}" aria-label="Play 30-second preview of ${safe}">${PLAY_ICON}</button>`
         : `<button type="button" class="play-btn" disabled aria-label="No preview available for ${safe}">${PLAY_ICON}</button>`;
@@ -238,18 +242,18 @@ function findTrackButton(card, trackName){
   return [...card.querySelectorAll(".play-btn")].find(b => b.dataset.track === trackName) || null;
 }
 
-function nextPlayableTrack(tracklist, fromIndex){
+function nextPlayableTrack(albumTitle, tracklist, fromIndex){
   for (let i = fromIndex + 1; i < tracklist.length; i++){
     const t = tracklist[i];
     if (t.startsWith("—")) continue;
-    if (TRACK_PREVIEWS[t]) return i;
+    if (getPreview(albumTitle, t)) return i;
   }
   return -1;
 }
 
 function playTrackAt(card, album, index){
   const title = album.tracklist[index];
-  const preview = TRACK_PREVIEWS[title];
+  const preview = getPreview(album.title, title);
   const btn = findTrackButton(card, title);
   if (!preview || !btn) return false;
 
@@ -268,7 +272,7 @@ function playTrackAt(card, album, index){
 
 previewAudio.addEventListener("ended", () => {
   if (autoplayEnabled && currentCard && currentAlbum) {
-    const nextIndex = nextPlayableTrack(currentAlbum.tracklist, currentTrackIndex);
+    const nextIndex = nextPlayableTrack(currentAlbum.title, currentAlbum.tracklist, currentTrackIndex);
     if (nextIndex !== -1 && playTrackAt(currentCard, currentAlbum, nextIndex)) return;
   }
   stopPreview();
@@ -341,7 +345,7 @@ function renderCard(album){
           <span class="year">${album.year} · ${realTrackCount(album.tracklist)} tracks</span>
         </div>
         <div class="back-body">
-          <ol class="tracklist">${trackItemsHtml(album.tracklist)}</ol>
+          <ol class="tracklist">${trackItemsHtml(album.title, album.tracklist)}</ol>
         </div>
       </div>
     </div>
