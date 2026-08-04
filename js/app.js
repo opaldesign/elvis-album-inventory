@@ -224,6 +224,13 @@ const revealObserver = new IntersectionObserver((entries) => {
 const eraNavEl = document.getElementById("eraNav");
 let eraObserver = null;
 
+const heroObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    eraNavEl.classList.toggle("visible", !entry.isIntersecting);
+  });
+}, { threshold: 0 });
+heroObserver.observe(document.querySelector(".hero"));
+
 function buildEraNav(sections){
   eraNavEl.innerHTML = sections.map(sec =>
     `<a href="#${sec.id}">${sec.dataset.navLabel}</a>`
