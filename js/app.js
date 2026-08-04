@@ -1,5 +1,9 @@
 const ENABLE_PREVIEWS = true;
 
+function decadeOf(year){
+  return `${Math.floor(year / 10) * 10}'s`;
+}
+
 function realTrackCount(tracklist){
   return tracklist.filter(t => !t.startsWith("—")).length;
 }
@@ -109,11 +113,21 @@ function render(){
 
   emptyEl.hidden = visible.length !== 0;
 
-  const grid = document.createElement("div");
-  grid.className = "grid";
-  erasEl.appendChild(grid);
+  let currentDecade = null;
+  let grid = null;
 
   visible.forEach(album => {
+    const decade = decadeOf(album.year);
+    if (decade !== currentDecade) {
+      currentDecade = decade;
+      const section = document.createElement("section");
+      section.className = "era";
+      section.innerHTML = `<div class="era-head"><h2>${decade}</h2></div>`;
+      grid = document.createElement("div");
+      grid.className = "grid";
+      section.appendChild(grid);
+      erasEl.appendChild(section);
+    }
     const card = renderCard(album);
     grid.appendChild(card);
     revealObserver.observe(card);
