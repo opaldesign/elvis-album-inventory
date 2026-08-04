@@ -1,71 +1,56 @@
 const ERAS = [
   {
     title: "The Birth of the King",
-    years: "1956–1958",
+    years: "1956–1959",
     albums: ["Elvis Presley", "Elvis", "Loving You", "Elvis' Christmas Album", "King Creole", "For LP Fans Only"]
   },
   {
     title: "Home from the Army",
-    years: "1960–1961",
-    albums: ["Elvis Is Back!", "His Hand in Mine", "G.I. Blues", "Something for Everybody", "Pot Luck"]
+    years: "1960–1962",
+    albums: ["Elvis Is Back!", "His Hand in Mine", "G.I. Blues", "Something for Everybody", "Blue Hawaii", "Pot Luck"]
   },
   {
-    title: "Hollywood's Biggest Star",
-    years: "1961–1964",
-    albums: ["Blue Hawaii", "Girls! Girls! Girls!", "It Happened at the World's Fair", "Fun in Acapulco", "Kissin' Cousins", "Roustabout"]
+    title: "Hollywood Years",
+    years: "1962–1968",
+    albums: ["Girls! Girls! Girls!", "It Happened at the World's Fair", "Fun in Acapulco", "Kissin' Cousins", "Roustabout", "Girl Happy", "Elvis for Everyone!", "Harum Scarum", "Frankie and Johnny", "Paradise, Hawaiian Style", "Spinout", "How Great Thou Art", "Double Trouble", "Clambake", "Speedway"]
   },
   {
-    title: "The Movie Machine",
-    years: "1965–1967",
-    albums: ["Girl Happy", "Elvis for Everyone!", "Harum Scarum", "Frankie and Johnny", "Paradise, Hawaiian Style", "Spinout", "How Great Thou Art", "Double Trouble", "Clambake"]
-  },
-  {
-    title: "The End of Hollywood",
+    title: "The '68 Comeback Special",
     years: "1968",
-    albums: ["Speedway", "Elvis (NBC TV Special)"]
-  },
-  {
-    title: "The '68 Comeback",
-    years: "",
     albums: ["Elvis (NBC TV Special)"]
   },
   {
-    title: "The Memphis Comeback",
-    years: "1969",
+    title: "American Sound Sessions",
+    years: "1969–1970",
     albums: ["From Elvis in Memphis", "From Memphis to Vegas/From Vegas to Memphis", "Back in Memphis"]
   },
   {
-    title: "Vegas Returns",
-    years: "1969–1970",
-    albums: ["From Memphis to Vegas/From Vegas to Memphis", "On Stage", "Elvis - That's the Way It Is"]
+    title: "Las Vegas Years",
+    years: "1970",
+    albums: ["On Stage", "Elvis - That's the Way It Is"]
   },
   {
-    title: "Nashville & Country",
+    title: "Nashville Sessions",
     years: "1971–1972",
-    albums: ["Elvis Country (I'm 10,000 Years Old)", "Love Letters from Elvis", "I Got Lucky", "Elvis Now"]
+    albums: ["Elvis Country (I'm 10,000 Years Old)", "Love Letters from Elvis", "Elvis Sings the Wonderful World of Christmas", "I Got Lucky", "Elvis Now", "He Touched Me"]
   },
   {
-    title: "Gospel Collection",
-    years: "",
-    albums: ["His Hand in Mine", "How Great Thou Art", "He Touched Me"]
+    title: "Madison Square Garden",
+    years: "1972",
+    albums: ["Elvis as Recorded at Madison Square Garden"]
   },
   {
-    title: "Christmas Collection",
-    years: "",
-    albums: ["Elvis' Christmas Album", "Elvis Sings the Wonderful World of Christmas"]
+    title: "Aloha from Hawaii",
+    years: "1973",
+    albums: ["Aloha from Hawaii Via Satellite"]
   },
   {
-    title: "America's Concert King",
-    years: "1972–1974",
-    albums: ["Elvis as Recorded at Madison Square Garden", "Aloha from Hawaii Via Satellite", "Elvis Recorded Live on Stage in Memphis"]
-  },
-  {
-    title: "The Stax Years",
+    title: "Stax & Final Studio Sessions",
     years: "1973–1975",
-    albums: ["Elvis (The \"Fool\" Album)", "Raised on Rock/For Ol' Times Sake", "Good Times", "Promised Land", "Today"]
+    albums: ["Elvis (The \"Fool\" Album)", "Raised on Rock/For Ol' Times Sake", "Elvis Recorded Live on Stage in Memphis", "Good Times", "Promised Land", "Today"]
   },
   {
-    title: "The Final Recordings",
+    title: "The Final Years",
     years: "1976–1977",
     albums: ["From Elvis Presley Boulevard, Memphis, Tennessee", "Moody Blue", "Elvis in Concert"]
   }
