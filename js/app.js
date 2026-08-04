@@ -100,6 +100,22 @@ const revealObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
 
+function parseYears(yearsStr){
+  const parts = yearsStr.split(/[–-]/).map(s => parseInt(s.trim(), 10));
+  const start = parts[0];
+  const end = parts.length > 1 ? parts[1] : parts[0];
+  const years = [];
+  for (let y = start; y <= end; y++) years.push(y);
+  return years;
+}
+
+function timelineHtml(yearsStr){
+  const years = parseYears(yearsStr);
+  const single = years.length === 1 ? " single" : "";
+  const ticks = years.map(y => `<span class="tick">${y}</span>`).join("");
+  return `<div class="era-timeline${single}">${ticks}</div>`;
+}
+
 function render(){
   const query = qInput.value.trim();
   const visible = new Set(ALBUMS.filter(a => matches(a, query, activeCat)));
@@ -123,7 +139,10 @@ function render(){
     const section = document.createElement("section");
     section.className = "era";
     const heading = era.years ? `${era.title} (${era.years})` : era.title;
-    section.innerHTML = `<div class="era-head"><h2>${heading}</h2></div>`;
+    section.innerHTML = `
+      <div class="era-head"><h2>${heading}</h2></div>
+      ${era.years ? timelineHtml(era.years) : ""}
+    `;
     const grid = document.createElement("div");
     grid.className = "grid";
     section.appendChild(grid);

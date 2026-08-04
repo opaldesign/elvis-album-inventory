@@ -107,13 +107,25 @@
   /* ---------- Era sections ---------- */
   .era{margin-top:48px;}
   .era-head{
-    display:flex; align-items:baseline; gap:14px; margin-bottom:20px;
+    display:flex; align-items:baseline; gap:14px; margin-bottom:10px;
   }
   .era-head h2{
     font-family:var(--font-display); font-size:1.3rem; margin:0; white-space:nowrap; color:#fff;
   }
   .era-head::after{
     content:""; flex:1; height:1px; background:var(--line);
+  }
+  .era-timeline{
+    display:flex; justify-content:space-between; margin:0 0 24px;
+    border-top:1px solid var(--line); padding-top:7px;
+  }
+  .era-timeline.single{ justify-content:flex-start; }
+  .era-timeline .tick{
+    position:relative; font-variant-numeric:tabular-nums; font-size:0.68rem; color:var(--ink-faint);
+  }
+  .era-timeline .tick::before{
+    content:""; position:absolute; top:-7px; left:50%; width:1px; height:6px;
+    background:var(--line-strong); transform:translateX(-50%);
   }
 
   .grid{
