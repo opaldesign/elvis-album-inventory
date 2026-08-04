@@ -79,10 +79,10 @@ if (!prefersReducedMotion) {
   window.addEventListener("scroll", () => {
     if (bgParallaxTicking) return;
     bgParallaxTicking = true;
-    requestAnimationFrame(() => {
+    setTimeout(() => {
       updateBgParallax();
       bgParallaxTicking = false;
-    });
+    }, 0);
   }, { passive: true });
   updateBgParallax();
 }
