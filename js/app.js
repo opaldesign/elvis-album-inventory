@@ -85,14 +85,15 @@ chipsEl.addEventListener("click", (e) => {
 });
 
 const orderToggleEl = document.getElementById("orderToggle");
-let reverseOrder = localStorage.getItem("elvisReverseOrder") === "true";
+const storedOrderPref = localStorage.getItem("elvisReverseOrder");
+let reverseOrder = storedOrderPref === null ? true : storedOrderPref === "true";
 orderToggleEl.setAttribute("aria-pressed", String(reverseOrder));
-orderToggleEl.textContent = reverseOrder ? "Oldest First" : "Newest First";
+orderToggleEl.textContent = reverseOrder ? "Earliest" : "Latest";
 
 orderToggleEl.addEventListener("click", () => {
   reverseOrder = !reverseOrder;
   orderToggleEl.setAttribute("aria-pressed", String(reverseOrder));
-  orderToggleEl.textContent = reverseOrder ? "Oldest First" : "Newest First";
+  orderToggleEl.textContent = reverseOrder ? "Earliest" : "Latest";
   localStorage.setItem("elvisReverseOrder", String(reverseOrder));
   render();
 });
