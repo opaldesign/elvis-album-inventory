@@ -250,6 +250,14 @@ function buildEraNav(sections){
   sections.forEach(sec => eraObserver.observe(sec));
 }
 
+window.addEventListener("scroll", () => {
+  const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+  if (atBottom && eraNavEl.lastElementChild) {
+    [...eraNavEl.children].forEach(a => a.classList.remove("active"));
+    eraNavEl.lastElementChild.classList.add("active");
+  }
+});
+
 eraNavEl.addEventListener("click", (e) => {
   const a = e.target.closest("a");
   if (!a) return;
