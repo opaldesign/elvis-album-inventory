@@ -138,22 +138,6 @@
   .chip[aria-pressed="true"]{
     background:#fff; color:#000; border-color:#fff; font-weight:700;
   }
-  .year-sort{
-    display:flex; align-items:center; gap:0; flex:none;
-    border:1px solid var(--line-strong);
-  }
-  .year-sort-label{
-    font-family:var(--font-body); font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em;
-    padding:6px 10px; color:var(--ink-dim); white-space:nowrap;
-  }
-  .year-sort-btn{
-    font-family:var(--font-body); font-size:0.7rem;
-    padding:6px 10px; border:none; border-left:1px solid var(--line-strong);
-    background:transparent; color:var(--ink-dim); cursor:pointer; line-height:1;
-  }
-  .year-sort-btn[aria-pressed="true"]{
-    background:#fff; color:#000; font-weight:700;
-  }
   .result-count{font-size:0.78rem; color:var(--ink-faint); white-space:nowrap;}
 
   /* ---------- Era sections ---------- */
@@ -197,9 +181,11 @@
   }
   .era-nav-label[hidden]{ display:none; }
 
-  /* Desktop (>768px): full side list of era names, fixed off the content's right edge,
-     faded in once the hero has scrolled out of view. */
-  @media (min-width: 769px){
+  /* Wide desktop only (>=1680px): full side list of era names, fixed off the content's right
+     edge, faded in once the hero has scrolled out of view. The left:calc(50% + 614px) position
+     only fully fits without clipping past ~1668px, so anything narrower (including virtually
+     every laptop, e.g. MacBook Pro screens) keeps the edge-safe mobile dot scrubber instead. */
+  @media (min-width: 1680px){
     .era-nav{
       right:auto; left:calc(50% + 614px); top:82px; transform:none;
       width:auto; height:auto; max-height:calc(100vh - 102px); overflow-y:auto; max-width:220px;

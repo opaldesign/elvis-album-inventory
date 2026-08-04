@@ -108,27 +108,22 @@ chipsEl.addEventListener("click", (e) => {
   render();
 });
 
-const yearSortUpEl = document.getElementById("yearSortUp");
-const yearSortDownEl = document.getElementById("yearSortDown");
+const yearSortEl = document.getElementById("yearSort");
 const storedOrderPref = localStorage.getItem("elvisReverseOrder");
 let reverseOrder = storedOrderPref === null ? true : storedOrderPref === "true";
 
-function updateYearSortButtons(){
-  yearSortUpEl.setAttribute("aria-pressed", String(reverseOrder));
-  yearSortDownEl.setAttribute("aria-pressed", String(!reverseOrder));
+function updateYearSortButton(){
+  yearSortEl.setAttribute("aria-pressed", String(reverseOrder));
+  yearSortEl.textContent = reverseOrder ? "Year ▲" : "Year ▼";
 }
-updateYearSortButtons();
+updateYearSortButton();
 
-function setReverseOrder(value){
-  if (reverseOrder === value) return;
-  reverseOrder = value;
-  updateYearSortButtons();
+yearSortEl.addEventListener("click", () => {
+  reverseOrder = !reverseOrder;
+  updateYearSortButton();
   localStorage.setItem("elvisReverseOrder", String(reverseOrder));
   render();
-}
-
-yearSortUpEl.addEventListener("click", () => setReverseOrder(true));
-yearSortDownEl.addEventListener("click", () => setReverseOrder(false));
+});
 
 const qInput = document.getElementById("q");
 const suggestionsEl = document.getElementById("suggestions");
@@ -463,6 +458,32 @@ function trackItemsHtml(albumTitle, tracklist){
   }).join("");
 }
 
+const FADE_MS = 400;
+let fadeInterval = null;
+
+function fadeAudio(target, duration, onComplete){
+  if (fadeInterval) {
+    clearInterval(fadeInterval);
+    fadeInterval = null;
+  }
+  const steps = 20;
+  const stepTime = duration / steps;
+  const startVolume = previewAudio.volume;
+  const delta = (target - startVolume) / steps;
+  let step = 0;
+  fadeInterval = setInterval(() => {
+    step++;
+    if (step >= steps) {
+      clearInterval(fadeInterval);
+      fadeInterval = null;
+      previewAudio.volume = target;
+      if (onComplete) onComplete();
+      return;
+    }
+    previewAudio.volume = Math.min(1, Math.max(0, startVolume + delta * step));
+  }, stepTime);
+}
+
 const previewAudio = document.getElementById("previewAudio");
 const nowPlayingEl = document.getElementById("nowPlaying");
 const npCover = document.getElementById("npCover");
@@ -510,7 +531,7 @@ function showNowPlaying(album, trackName){
 }
 
 function pausePreview(){
-  previewAudio.pause();
+  fadeAudio(0, FADE_MS, () => previewAudio.pause());
   nowPlayingEl.classList.remove("spinning");
   npPlayPauseBtn.innerHTML = PLAY_ICON;
   npPlayPauseBtn.setAttribute("aria-label", "Play");
@@ -520,7 +541,9 @@ function pausePreview(){
 }
 
 function resumePreview(){
+  previewAudio.volume = 0;
   previewAudio.play().catch(() => {});
+  fadeAudio(1, FADE_MS);
   nowPlayingEl.classList.add("spinning");
   npPlayPauseBtn.innerHTML = PAUSE_ICON;
   npPlayPauseBtn.setAttribute("aria-label", "Pause");
@@ -560,6 +583,8 @@ function nextPlayableTrack(albumTitle, tracklist, fromIndex){
   return -1;
 }
 
+let fadedOutForCurrentTrack = false;
+
 function playTrackAt(card, album, index){
   const title = album.tracklist[index];
   const preview = getPreview(album.title, title);
@@ -568,7 +593,10 @@ function playTrackAt(card, album, index){
 
   stopPreview();
   previewAudio.src = preview.previewUrl;
+  previewAudio.volume = 0;
   previewAudio.play().catch(() => {});
+  fadeAudio(1, FADE_MS);
+  fadedOutForCurrentTrack = false;
   btn.innerHTML = PAUSE_ICON;
   btn.closest("li").classList.add("playing");
   currentPlayingBtn = btn;
@@ -578,6 +606,16 @@ function playTrackAt(card, album, index){
   showNowPlaying(album, title);
   return true;
 }
+
+previewAudio.addEventListener("timeupdate", () => {
+  if (fadedOutForCurrentTrack) return;
+  if (!previewAudio.duration || isNaN(previewAudio.duration)) return;
+  const remaining = previewAudio.duration - previewAudio.currentTime;
+  if (remaining <= FADE_MS / 1000) {
+    fadedOutForCurrentTrack = true;
+    fadeAudio(0, FADE_MS);
+  }
+});
 
 previewAudio.addEventListener("ended", () => {
   if (autoplayEnabled && currentCard && currentAlbum) {
