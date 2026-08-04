@@ -373,5 +373,125 @@ const ALBUM_TRACK_PREVIEWS = {
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/aa/9e/b0/aa9eb060-d728-67e2-add8-ca2860318bce/mzaf_12496552892205391251.plus.aac.p.m4a",
     "matchedTrackName": "Hurt (Live)",
     "matchedCollection": "Elvis In Concert (Live)"
+  },
+  "The Sun Sessions|||That's All Right": {
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/16/92/2e/16922e82-e557-2b85-4a6f-acbc110ef73c/mzaf_1759554588752267020.plus.aac.p.m4a",
+    "matchedTrackName": "That's All Right",
+    "matchedCollection": "Sunrise"
+  },
+  "The Sun Sessions|||Blue Moon of Kentucky": {
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/fb/e4/5b/fbe45b90-6108-34ca-493d-265031e1978d/mzaf_13216314725553473010.plus.aac.p.m4a",
+    "matchedTrackName": "Blue Moon of Kentucky",
+    "matchedCollection": "Sunrise"
+  },
+  "The Sun Sessions|||I Don't Care If the Sun Don't Shine": {
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/c9/0b/50/c90b506c-1541-6dc6-b71d-0a484a4a3fae/mzaf_16755966363049535925.plus.aac.p.m4a",
+    "matchedTrackName": "I Don't Care If the Sun Don't Shine",
+    "matchedCollection": "Sunrise"
+  },
+  "The Sun Sessions|||Good Rockin' Tonight": {
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/67/55/a6/6755a620-670a-08be-b2d9-6264cddcaec5/mzaf_3339147938221112353.plus.aac.p.m4a",
+    "matchedTrackName": "Good Rockin' Tonight",
+    "matchedCollection": "Sunrise"
+  },
+  "The Sun Sessions|||Milkcow Blues Boogie": {
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/7e/8f/87/7e8f879c-282f-017f-2f93-af38a774d355/mzaf_15460677523485629696.plus.aac.p.m4a",
+    "matchedTrackName": "Milkcow Blues Boogie",
+    "matchedCollection": "Sunrise"
+  },
+  "The Sun Sessions|||You're a Heartbreaker": {
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/39/82/0f/39820fe7-19c4-8e36-4654-b1654fc026d3/mzaf_3885778869007078626.plus.aac.p.m4a",
+    "matchedTrackName": "You're a Heartbreaker",
+    "matchedCollection": "Sunrise"
+  },
+  "The Sun Sessions|||I'm Left, You're Right, She's Gone": {
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/fb/15/34/fb1534bb-930f-5d61-33c7-3caefaa5e3fc/mzaf_12098138968726128093.plus.aac.p.m4a",
+    "matchedTrackName": "I'm Left, You're Right, She's Gone",
+    "matchedCollection": "Sunrise"
+  },
+  "The Sun Sessions|||Baby Let's Play House": {
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/0b/92/15/0b921518-1f55-f843-7231-b2df2d31cf41/mzaf_18356358603283928076.plus.aac.p.m4a",
+    "matchedTrackName": "Baby Let's Play House",
+    "matchedCollection": "Sunrise"
+  },
+  "The Sun Sessions|||Mystery Train": {
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/ea/8a/43/ea8a438b-2cff-dbf9-9c6b-1aa79570bd72/mzaf_18365865192765556246.plus.aac.p.m4a",
+    "matchedTrackName": "Mystery Train",
+    "matchedCollection": "Sunrise"
+  },
+  "The Sun Sessions|||I Forgot to Remember to Forget": {
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/e2/5d/96/e25d96ca-6546-66b9-fcdd-425a21186def/mzaf_14321595821618974538.plus.aac.p.m4a",
+    "matchedTrackName": "I Forgot to Remember to Forget",
+    "matchedCollection": "Sunrise"
+  },
+  "The Sun Sessions|||I'll Never Let You Go (Little Darlin')": {
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/40/dd/8f/40dd8ff5-d9e9-ffc2-0001-7e0f34e92aaa/mzaf_12679859567620216524.plus.aac.p.m4a",
+    "matchedTrackName": "I'll Never Let You Go (Little Darlin')",
+    "matchedCollection": "Sunrise"
+  },
+  "The Sun Sessions|||I Love You Because": {
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/a8/b9/22/a8b9225a-3e4a-32e3-8773-34b02ef5071f/mzaf_4654175358662508583.plus.aac.p.m4a",
+    "matchedTrackName": "I Love You Because",
+    "matchedCollection": "Sunrise"
+  },
+  "The Sun Sessions|||I Love You Because (Alternate Take)": {
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/8f/54/72/8f5472e6-cccd-393d-c2e7-7570ce9a193f/mzaf_15335245221306949562.plus.aac.p.m4a",
+    "matchedTrackName": "I Love You Because (Alternate Take)",
+    "matchedCollection": "Sunrise"
+  },
+  "The Sun Sessions|||Tryin' to Get to You": {
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/3a/01/06/3a0106e3-e674-0a75-3b20-a077d089e14d/mzaf_3808009948181100229.plus.aac.p.m4a",
+    "matchedTrackName": "Trying to Get to You",
+    "matchedCollection": "Sunrise"
+  },
+  "The Sun Sessions|||Blue Moon": {
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/2a/17/88/2a1788f8-c9b5-2e70-227a-34cf7f48c1eb/mzaf_7961633025633590550.plus.aac.p.m4a",
+    "matchedTrackName": "Blue Moon",
+    "matchedCollection": "Sunrise"
+  },
+  "The Sun Sessions|||Just Because": {
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/51/38/ec/5138ecb9-72b6-1833-6ee9-a1d7bcbe4a16/mzaf_11537715225345121002.plus.aac.p.m4a",
+    "matchedTrackName": "Just Because",
+    "matchedCollection": "Sunrise"
+  },
+  "For LP Fans Only|||You're a Heartbreaker": {
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/55/40/d0/5540d01c-a242-cb24-d7f7-8214c6e91cc5/mzaf_912756868306802997.plus.aac.p.m4a",
+    "matchedTrackName": "You're a Heartbreaker",
+    "matchedCollection": "For LP Fans Only"
+  },
+  "For LP Fans Only|||I'm Left, You're Right, She's Gone": {
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/d6/0a/78/d60a78ef-bc9b-7f82-02bb-13836b3de423/mzaf_1694608985104141156.plus.aac.p.m4a",
+    "matchedTrackName": "I'm Left, You're Right, She's Gone",
+    "matchedCollection": "For LP Fans Only"
+  },
+  "For LP Fans Only|||Mystery Train": {
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/4c/9b/25/4c9b25d4-e329-a113-3c89-21bed8109598/mzaf_4675542749824087292.plus.aac.p.m4a",
+    "matchedTrackName": "Mystery Train",
+    "matchedCollection": "For LP Fans Only"
+  },
+  "Elvis Presley|||I'll Never Let You Go (Little Darlin')": {
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/0c/5a/eb/0c5aeb94-5cf6-ac89-7cdd-2a9028ade9fe/mzaf_1573848274804821875.plus.aac.p.m4a",
+    "matchedTrackName": "I'll Never Let You Go (Little Darlin')",
+    "matchedCollection": "Elvis Presley"
+  },
+  "Elvis Presley|||I Love You Because": {
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/b5/e3/9c/b5e39ca9-0b96-85c2-db9b-40c4cfd49788/mzaf_4119458659836824339.plus.aac.p.m4a",
+    "matchedTrackName": "I Love You Because",
+    "matchedCollection": "Elvis Presley"
+  },
+  "Elvis Presley|||Tryin' to Get to You": {
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/65/5d/c8/655dc860-df4b-8053-0ab4-90712a8e1226/mzaf_3993907376571317052.plus.aac.p.m4a",
+    "matchedTrackName": "Trying to Get to You",
+    "matchedCollection": "Elvis Presley"
+  },
+  "Elvis Presley|||Blue Moon": {
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/df/08/01/df0801dd-f835-b9cb-c0e1-6aee9fe0447b/mzaf_8874830339693646923.plus.aac.p.m4a",
+    "matchedTrackName": "Blue Moon",
+    "matchedCollection": "Elvis Presley"
+  },
+  "Elvis Presley|||Just Because": {
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/30/d9/31/30d9314e-69e2-8951-1a0e-1ef8037bd491/mzaf_14646975912592989440.plus.aac.p.m4a",
+    "matchedTrackName": "Just Because",
+    "matchedCollection": "Elvis Presley"
   }
 };

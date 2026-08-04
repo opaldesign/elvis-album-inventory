@@ -48,5 +48,6 @@ const COVERS = {
   "Elvis in Concert": "images/covers/elvis-in-concert.jpg",
   "For LP Fans Only": "images/covers/for-lp-fans-only.jpg",
   "I Got Lucky": "images/covers/i-got-lucky.jpg",
-  "Back in Memphis": "images/covers/back-in-memphis.jpg"
+  "Back in Memphis": "images/covers/back-in-memphis.jpg",
+  "The Sun Sessions": "images/covers/the-sun-sessions.jpg"
 };

@@ -1,5 +1,10 @@
 const ERAS = [
   {
+    title: "The Sun Sessions",
+    years: "1954–1955",
+    albums: ["The Sun Sessions"]
+  },
+  {
     title: "The Birth of the King",
     years: "1956–1959",
     albums: ["Elvis Presley", "Elvis", "Loving You", "Elvis' Christmas Album", "King Creole", "For LP Fans Only"]

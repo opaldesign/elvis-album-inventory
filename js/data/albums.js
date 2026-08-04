@@ -7,6 +7,7 @@ const CATS = {
 };
 
 const ALBUMS = [
+  { title:"The Sun Sessions", year:1954, category:"studio", tracklist:["That's All Right","Blue Moon of Kentucky","I Don't Care If the Sun Don't Shine","Good Rockin' Tonight","Milkcow Blues Boogie","You're a Heartbreaker","I'm Left, You're Right, She's Gone","Baby Let's Play House","Mystery Train","I Forgot to Remember to Forget","I'll Never Let You Go (Little Darlin')","I Love You Because","Tryin' to Get to You","Blue Moon","Just Because","I Love You Because (Alternate Take)"] },
   { title:"Elvis Presley", year:1956, category:"studio", tracklist:["Blue Suede Shoes","I'm Counting on You","I Got a Woman","One-Sided Love Affair","I Love You Because","Just Because","Tutti Frutti","Tryin' to Get to You","I'm Gonna Sit Right Down and Cry (Over You)","I'll Never Let You Go (Little Darlin')","Blue Moon","Money Honey"] },
   { title:"Elvis", year:1956, category:"studio", tracklist:["Rip It Up","Love Me","When My Blue Moon Turns to Gold Again","Long Tall Sally","First in Line","Paralyzed","So Glad You're Mine","Old Shep","Ready Teddy","Anyplace Is Paradise","How's the World Treating You?","How Do You Think I Feel?"] },
   { title:"Loving You", year:1957, category:"soundtrack", tracklist:["Mean Woman Blues","(Let Me Be Your) Teddy Bear","Loving You","Got a Lot o' Livin' to Do!","Lonesome Cowboy","Hot Dog","Party","Blueberry Hill","True Love","Don't Leave Me Now","Have I Told You Lately That I Love You","I Need You So"] },
