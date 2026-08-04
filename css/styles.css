@@ -132,7 +132,7 @@
   /* ---------- Era sections ---------- */
   .era{margin-top:48px;}
   .era-head{
-    display:flex; align-items:baseline; gap:14px; margin-bottom:10px;
+    display:flex; align-items:baseline; gap:14px; margin-bottom:20px;
   }
   .era-head h2{
     font-family:var(--font-display); font-size:1.3rem; margin:0; white-space:nowrap; color:#fff;
@@ -140,18 +140,21 @@
   .era-head::after{
     content:""; flex:1; height:1px; background:var(--line);
   }
-  .era-timeline{
-    display:flex; justify-content:space-between; margin:0 0 24px;
-    border-top:1px solid var(--line); padding-top:7px;
+
+  .era-nav{
+    position:fixed; right:18px; top:50%; transform:translateY(-50%);
+    z-index:15; max-height:64vh; overflow-y:auto;
+    display:flex; flex-direction:column; gap:1px;
+    padding:4px 0 4px 14px; border-left:1px solid var(--line);
   }
-  .era-timeline.single{ justify-content:flex-start; }
-  .era-timeline .tick{
-    position:relative; font-variant-numeric:tabular-nums; font-size:0.68rem; color:var(--ink-faint);
+  .era-nav a{
+    display:block; padding:6px 10px; margin-left:-15px; border-left:2px solid transparent;
+    font-size:0.66rem; text-transform:uppercase; letter-spacing:0.05em; white-space:nowrap;
+    color:var(--ink-faint); text-decoration:none;
   }
-  .era-timeline .tick::before{
-    content:""; position:absolute; top:-7px; left:50%; width:1px; height:6px;
-    background:var(--line-strong); transform:translateX(-50%);
-  }
+  .era-nav a:hover, .era-nav a:focus-visible{ color:var(--ink-dim); }
+  .era-nav a.active{ color:#fff; border-left-color:#fff; }
+  @media (max-width: 1400px){ .era-nav{ display:none; } }
 
   .grid{
     display:grid; grid-template-columns:repeat(auto-fill, minmax(230px,1fr)); gap:20px;

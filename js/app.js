@@ -221,21 +221,35 @@ const revealObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
 
-function parseYears(yearsStr){
-  const parts = yearsStr.split(/[–-]/).map(s => parseInt(s.trim(), 10));
-  const start = parts[0];
-  const end = parts.length > 1 ? parts[1] : parts[0];
-  const years = [];
-  for (let y = start; y <= end; y++) years.push(y);
-  return years;
+const eraNavEl = document.getElementById("eraNav");
+let eraObserver = null;
+
+function buildEraNav(sections){
+  eraNavEl.innerHTML = sections.map(sec =>
+    `<a href="#${sec.id}">${sec.dataset.navLabel}</a>`
+  ).join("");
+
+  if (eraObserver) eraObserver.disconnect();
+  eraObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const link = eraNavEl.querySelector(`a[href="#${entry.target.id}"]`);
+      if (!link) return;
+      [...eraNavEl.children].forEach(a => a.classList.remove("active"));
+      link.classList.add("active");
+    });
+  }, { rootMargin: "-15% 0px -75% 0px", threshold: 0 });
+
+  sections.forEach(sec => eraObserver.observe(sec));
 }
 
-function timelineHtml(yearsStr){
-  const years = parseYears(yearsStr);
-  const single = years.length === 1 ? " single" : "";
-  const ticks = years.map(y => `<span class="tick">${y}</span>`).join("");
-  return `<div class="era-timeline${single}">${ticks}</div>`;
-}
+eraNavEl.addEventListener("click", (e) => {
+  const a = e.target.closest("a");
+  if (!a) return;
+  e.preventDefault();
+  const target = document.getElementById(a.getAttribute("href").slice(1));
+  if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+});
 
 function render(){
   const query = qInput.value.trim();
@@ -249,8 +263,9 @@ function render(){
   emptyEl.hidden = visible.size !== 0;
 
   const placed = new Set();
+  const renderedSections = [];
 
-  ERAS.forEach(era => {
+  ERAS.forEach((era, i) => {
     const eraAlbums = era.albums
       .map(title => ALBUMS_BY_TITLE.get(title))
       .filter(album => visible.has(album) && !placed.has(album));
@@ -259,15 +274,15 @@ function render(){
 
     const section = document.createElement("section");
     section.className = "era";
+    section.id = `era-${i}`;
     const heading = era.years ? `${era.title} (${era.years})` : era.title;
-    section.innerHTML = `
-      <div class="era-head"><h2>${heading}</h2></div>
-      ${era.years ? timelineHtml(era.years) : ""}
-    `;
+    section.dataset.navLabel = heading;
+    section.innerHTML = `<div class="era-head"><h2>${heading}</h2></div>`;
     const grid = document.createElement("div");
     grid.className = "grid";
     section.appendChild(grid);
     erasEl.appendChild(section);
+    renderedSections.push(section);
 
     eraAlbums.forEach(album => {
       const card = renderCard(album);
@@ -275,6 +290,8 @@ function render(){
       revealObserver.observe(card);
     });
   });
+
+  buildEraNav(renderedSections);
 
   sizeCards();
 }
