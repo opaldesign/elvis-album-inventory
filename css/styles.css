@@ -140,8 +140,9 @@
     content:""; flex:1; height:1px; background:var(--line);
   }
 
-  /* Slim vertical scrubber pinned to the right edge, in the same spot as a native scrollbar.
-     Press/drag along it to jump between eras; a floating label shows the era under the pointer. */
+  /* Mobile (<=768px): slim vertical dot scrubber pinned to the right edge, in the same spot as
+     a native scrollbar. Press/drag along it to jump between eras; a floating label shows the
+     era name under the pointer. */
   .era-nav{
     position:fixed; right:4px; top:50%; transform:translateY(-50%);
     width:20px; height:min(70vh, 640px); z-index:30;
@@ -158,6 +159,7 @@
   }
   .era-nav a:hover .era-tick, .era-nav a:focus-visible .era-tick{ background:var(--ink-dim); }
   .era-nav a.active .era-tick{ width:7px; height:7px; background:#fff; }
+  .era-label-text{ display:none; }
 
   .era-nav-label{
     position:fixed; z-index:31; transform:translateY(-50%);
@@ -167,9 +169,29 @@
   }
   .era-nav-label[hidden]{ display:none; }
 
-  /* Scrubber dots are a mobile-only affordance; desktop gets no era nav at all */
+  /* Desktop (>768px): full side list of era names, fixed off the content's right edge,
+     faded in once the hero has scrolled out of view. */
   @media (min-width: 769px){
-    .era-nav, .era-nav-label{ display:none; }
+    .era-nav{
+      right:auto; left:calc(50% + 614px); top:82px; transform:none;
+      width:auto; height:auto; max-height:calc(100vh - 102px); overflow-y:auto; max-width:220px;
+      flex-direction:column; justify-content:flex-start; align-items:stretch;
+      padding:4px 0 4px 14px; border-left:1px solid var(--line);
+      touch-action:auto; cursor:default;
+      opacity:0; pointer-events:none; transition:opacity .25s ease;
+    }
+    .era-nav.visible{ opacity:1; pointer-events:auto; }
+    .era-nav a{
+      display:block; flex:none; padding:6px 10px; margin-left:-15px; border-left:2px solid transparent;
+      font-size:0.66rem; text-transform:uppercase; letter-spacing:0.05em; white-space:nowrap;
+      overflow:hidden; text-overflow:ellipsis;
+      color:var(--ink-faint);
+    }
+    .era-nav a:hover, .era-nav a:focus-visible{ color:var(--ink-dim); }
+    .era-nav a.active{ color:#fff; border-left-color:#fff; }
+    .era-tick{ display:none; }
+    .era-label-text{ display:inline; }
+    .era-nav-label{ display:none; }
   }
 
   .grid{

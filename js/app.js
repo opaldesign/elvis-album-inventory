@@ -225,9 +225,16 @@ const eraNavEl = document.getElementById("eraNav");
 const eraNavLabelEl = document.getElementById("eraNavLabel");
 let eraObserver = null;
 
+const heroObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    eraNavEl.classList.toggle("visible", !entry.isIntersecting);
+  });
+}, { threshold: 0 });
+heroObserver.observe(document.querySelector(".hero"));
+
 function buildEraNav(sections){
   eraNavEl.innerHTML = sections.map(sec =>
-    `<a href="#${sec.id}" aria-label="${sec.dataset.navLabel}"><span class="era-tick"></span></a>`
+    `<a href="#${sec.id}" aria-label="${sec.dataset.navLabel}"><span class="era-tick"></span><span class="era-label-text">${sec.dataset.navLabel}</span></a>`
   ).join("");
 
   if (eraObserver) eraObserver.disconnect();
