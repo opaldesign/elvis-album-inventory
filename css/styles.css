@@ -167,6 +167,11 @@
   }
   .era-nav-label[hidden]{ display:none; }
 
+  /* Scrubber dots are a mobile-only affordance; desktop gets no era nav at all */
+  @media (min-width: 769px){
+    .era-nav, .era-nav-label{ display:none; }
+  }
+
   .grid{
     display:grid; grid-template-columns:repeat(auto-fill, minmax(230px,1fr)); gap:20px;
   }
