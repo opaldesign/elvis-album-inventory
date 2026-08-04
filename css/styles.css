@@ -77,7 +77,6 @@
     position:sticky; top:0; z-index:20;
     background:transparent;
     backdrop-filter:blur(8px);
-    border-bottom:1px solid var(--line);
     padding:14px 24px;
   }
   .controls-inner{
@@ -142,19 +141,20 @@
   }
 
   .era-nav{
-    position:fixed; right:18px; top:50%; transform:translateY(-50%);
-    z-index:15; max-height:64vh; overflow-y:auto;
+    position:fixed; left:calc(50% + 614px); top:50%; transform:translateY(-50%);
+    z-index:15; max-height:64vh; overflow-y:auto; max-width:220px;
     display:flex; flex-direction:column; gap:1px;
     padding:4px 0 4px 14px; border-left:1px solid var(--line);
   }
   .era-nav a{
     display:block; padding:6px 10px; margin-left:-15px; border-left:2px solid transparent;
     font-size:0.66rem; text-transform:uppercase; letter-spacing:0.05em; white-space:nowrap;
+    overflow:hidden; text-overflow:ellipsis;
     color:var(--ink-faint); text-decoration:none;
   }
   .era-nav a:hover, .era-nav a:focus-visible{ color:var(--ink-dim); }
   .era-nav a.active{ color:#fff; border-left-color:#fff; }
-  @media (max-width: 1400px){ .era-nav{ display:none; } }
+  @media (max-width: 1660px){ .era-nav{ display:none; } }
 
   .grid{
     display:grid; grid-template-columns:repeat(auto-fill, minmax(230px,1fr)); gap:20px;
