@@ -1,8 +1,6 @@
 const ENABLE_PREVIEWS = true;
 
-function decadeOf(year){
-  return `${Math.floor(year / 10) * 10}'s`;
-}
+const ALBUMS_BY_TITLE = new Map(ALBUMS.map(a => [a.title, a]));
 
 function realTrackCount(tracklist){
   return tracklist.filter(t => !t.startsWith("—")).length;
@@ -104,33 +102,38 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 function render(){
   const query = qInput.value.trim();
-  const visible = ALBUMS.filter(a => matches(a, query, activeCat));
+  const visible = new Set(ALBUMS.filter(a => matches(a, query, activeCat)));
   erasEl.innerHTML = "";
 
-  countEl.textContent = visible.length === ALBUMS.length
+  countEl.textContent = visible.size === ALBUMS.length
     ? `${ALBUMS.length} albums`
-    : `${visible.length} of ${ALBUMS.length} albums`;
+    : `${visible.size} of ${ALBUMS.length} albums`;
 
-  emptyEl.hidden = visible.length !== 0;
+  emptyEl.hidden = visible.size !== 0;
 
-  let currentDecade = null;
-  let grid = null;
+  const placed = new Set();
 
-  visible.forEach(album => {
-    const decade = decadeOf(album.year);
-    if (decade !== currentDecade) {
-      currentDecade = decade;
-      const section = document.createElement("section");
-      section.className = "era";
-      section.innerHTML = `<div class="era-head"><h2>${decade}</h2></div>`;
-      grid = document.createElement("div");
-      grid.className = "grid";
-      section.appendChild(grid);
-      erasEl.appendChild(section);
-    }
-    const card = renderCard(album);
-    grid.appendChild(card);
-    revealObserver.observe(card);
+  ERAS.forEach(era => {
+    const eraAlbums = era.albums
+      .map(title => ALBUMS_BY_TITLE.get(title))
+      .filter(album => visible.has(album) && !placed.has(album));
+    if (eraAlbums.length === 0) return;
+    eraAlbums.forEach(album => placed.add(album));
+
+    const section = document.createElement("section");
+    section.className = "era";
+    const heading = era.years ? `${era.title} (${era.years})` : era.title;
+    section.innerHTML = `<div class="era-head"><h2>${heading}</h2></div>`;
+    const grid = document.createElement("div");
+    grid.className = "grid";
+    section.appendChild(grid);
+    erasEl.appendChild(section);
+
+    eraAlbums.forEach(album => {
+      const card = renderCard(album);
+      grid.appendChild(card);
+      revealObserver.observe(card);
+    });
   });
 
   sizeCards();

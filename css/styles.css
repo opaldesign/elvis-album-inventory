@@ -104,7 +104,7 @@
   }
   .result-count{font-size:0.78rem; color:var(--ink-faint); white-space:nowrap;}
 
-  /* ---------- Decade sections ---------- */
+  /* ---------- Era sections ---------- */
   .era{margin-top:48px;}
   .era-head{
     display:flex; align-items:baseline; gap:14px; margin-bottom:20px;
