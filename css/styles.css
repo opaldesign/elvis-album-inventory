@@ -33,11 +33,23 @@
   /* ---------- Background collage ---------- */
   .bg-collage{
     position:fixed; inset:-30px; z-index:-2; overflow:hidden;
-    display:grid; grid-auto-rows:170px; gap:0;
+    display:flex; flex-direction:column; gap:0;
     filter:blur(9px) brightness(0.8) saturate(1.05);
-    transform:scale(1.06);
+    animation:bg-drift 46s ease-in-out infinite;
   }
-  .bg-collage img{width:100%; height:100%; object-fit:cover; display:block;}
+  .bg-row{
+    display:flex; flex:none; height:170px; width:max-content;
+    will-change:transform;
+  }
+  .bg-row img{width:170px; height:170px; object-fit:cover; display:block; flex:none;}
+  .bg-row.dir-left{ animation-name:bg-scroll-left; animation-timing-function:linear; animation-iteration-count:infinite; }
+  .bg-row.dir-right{ animation-name:bg-scroll-right; animation-timing-function:linear; animation-iteration-count:infinite; }
+  @keyframes bg-scroll-left{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+  @keyframes bg-scroll-right{ from{transform:translateX(-50%);} to{transform:translateX(0);} }
+  @keyframes bg-drift{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-24px);} }
+  @media (prefers-reduced-motion: reduce){
+    .bg-collage, .bg-row{ animation:none !important; }
+  }
   .bg-scrim{position:fixed; inset:0; z-index:-1; background:rgba(0,0,0,0.76);}
 
   .wrap{max-width:1180px; margin:0 auto; padding:0 24px 80px; position:relative;}

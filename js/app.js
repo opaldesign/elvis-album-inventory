@@ -25,18 +25,30 @@ function buildCollage(){
   const urls = Object.values(COVERS);
   if (!el || !urls.length) return;
   const cell = 170;
-  const cols = Math.ceil((window.innerWidth + 60) / cell) + 1;
-  const rows = Math.ceil((window.innerHeight + 60) / cell) + 1;
-  const total = cols * rows;
-  const shuffled = shuffle(urls);
-  el.style.gridTemplateColumns = `repeat(${cols}, ${cell}px)`;
+  const cols = Math.ceil((window.innerWidth + 60) / cell) + 2;
+  const rows = Math.ceil((window.innerHeight + 60) / cell) + 2;
+
   const frag = document.createDocumentFragment();
-  for (let i = 0; i < total; i++){
-    const img = document.createElement("img");
-    img.src = shuffled[i % shuffled.length];
-    img.alt = "";
-    img.loading = i < cols * 2 ? "eager" : "lazy";
-    frag.appendChild(img);
+  for (let r = 0; r < rows; r++){
+    const rowEl = document.createElement("div");
+    rowEl.className = "bg-row " + (r % 2 === 0 ? "dir-left" : "dir-right");
+    rowEl.style.animationDuration = (55 + (r % 3) * 15) + "s";
+
+    const shuffled = shuffle(urls);
+    const rowUrls = [];
+    for (let c = 0; c < cols; c++) rowUrls.push(shuffled[c % shuffled.length]);
+
+    // duplicate the row's images so translateX(-50%) loops seamlessly
+    for (let rep = 0; rep < 2; rep++){
+      rowUrls.forEach((src) => {
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = "";
+        img.loading = (r < 2 && rep === 0) ? "eager" : "lazy";
+        rowEl.appendChild(img);
+      });
+    }
+    frag.appendChild(rowEl);
   }
   el.innerHTML = "";
   el.appendChild(frag);
