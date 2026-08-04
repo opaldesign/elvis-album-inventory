@@ -73,7 +73,128 @@ chipsEl.addEventListener("click", (e) => {
 });
 
 const qInput = document.getElementById("q");
-qInput.addEventListener("input", render);
+const suggestionsEl = document.getElementById("suggestions");
+
+const SUGGESTIONS = [];
+ALBUMS.forEach(album => {
+  SUGGESTIONS.push({ type: "album", label: album.title, album });
+  album.tracklist.forEach(t => {
+    if (!t.startsWith("—")) SUGGESTIONS.push({ type: "song", label: t, album });
+  });
+});
+
+let currentSuggestions = [];
+let activeSuggestionIndex = -1;
+
+function closeSuggestions(){
+  suggestionsEl.hidden = true;
+  suggestionsEl.innerHTML = "";
+  currentSuggestions = [];
+  activeSuggestionIndex = -1;
+  qInput.setAttribute("aria-expanded", "false");
+}
+
+function updateActiveSuggestion(){
+  [...suggestionsEl.children].forEach((li, i) => {
+    li.classList.toggle("active", i === activeSuggestionIndex);
+  });
+  const activeEl = suggestionsEl.children[activeSuggestionIndex];
+  if (activeEl) activeEl.scrollIntoView({ block: "nearest" });
+}
+
+function renderSuggestions(){
+  const query = qInput.value.trim().toLowerCase();
+  if (!query) { closeSuggestions(); return; }
+
+  currentSuggestions = SUGGESTIONS
+    .filter(s => s.label.toLowerCase().includes(query))
+    .sort((a, b) => (a.type === b.type ? 0 : a.type === "album" ? -1 : 1))
+    .slice(0, 8);
+
+  if (currentSuggestions.length === 0) { closeSuggestions(); return; }
+
+  suggestionsEl.innerHTML = currentSuggestions.map((s, i) => `
+    <li class="suggestion" role="option" data-index="${i}">
+      <span class="s-label">${escAttr(s.label)}</span>
+      <span class="s-sub">${s.type === "album" ? "Album" : escAttr(s.album.title)}</span>
+    </li>
+  `).join("");
+  suggestionsEl.hidden = false;
+  activeSuggestionIndex = -1;
+  qInput.setAttribute("aria-expanded", "true");
+}
+
+function flashHighlight(el){
+  el.classList.remove("search-highlight");
+  void el.offsetWidth;
+  el.classList.add("search-highlight");
+  setTimeout(() => el.classList.remove("search-highlight"), 1700);
+}
+
+function findCardForAlbum(album){
+  return [...document.querySelectorAll(".card")].find(c => c.querySelector(".title").textContent.trim() === album.title) || null;
+}
+
+function selectSuggestion(s){
+  qInput.value = "";
+  render();
+  closeSuggestions();
+
+  setTimeout(() => {
+    const card = findCardForAlbum(s.album);
+    if (!card) return;
+    card.scrollIntoView({ behavior: "smooth", block: "center" });
+    flashHighlight(card);
+
+    if (s.type === "song") {
+      if (!card.classList.contains("flipped")) card.click();
+      setTimeout(() => {
+        const row = [...card.querySelectorAll(".tracklist .track-name")]
+          .find(el => el.textContent.trim() === s.label);
+        if (row) {
+          const li = row.closest("li");
+          li.scrollIntoView({ behavior: "smooth", block: "center" });
+          flashHighlight(li);
+        }
+      }, 350);
+    }
+  }, 0);
+}
+
+qInput.addEventListener("input", () => {
+  render();
+  renderSuggestions();
+});
+
+qInput.addEventListener("keydown", (e) => {
+  if (suggestionsEl.hidden) return;
+  if (e.key === "ArrowDown") {
+    e.preventDefault();
+    activeSuggestionIndex = Math.min(activeSuggestionIndex + 1, currentSuggestions.length - 1);
+    updateActiveSuggestion();
+  } else if (e.key === "ArrowUp") {
+    e.preventDefault();
+    activeSuggestionIndex = Math.max(activeSuggestionIndex - 1, 0);
+    updateActiveSuggestion();
+  } else if (e.key === "Enter") {
+    if (activeSuggestionIndex >= 0) {
+      e.preventDefault();
+      selectSuggestion(currentSuggestions[activeSuggestionIndex]);
+    }
+  } else if (e.key === "Escape") {
+    closeSuggestions();
+  }
+});
+
+suggestionsEl.addEventListener("click", (e) => {
+  const li = e.target.closest(".suggestion");
+  if (!li) return;
+  selectSuggestion(currentSuggestions[parseInt(li.dataset.index, 10)]);
+});
+
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".search")) closeSuggestions();
+});
 
 const erasEl = document.getElementById("eras");
 const emptyEl = document.getElementById("empty");

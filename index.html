@@ -25,7 +25,8 @@
   <div class="controls-inner">
     <div class="search">
       <label for="q" style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0);">Search albums or tracks</label>
-      <input id="q" type="text" placeholder="Search an album or a song…" autocomplete="off">
+      <input id="q" type="text" placeholder="Search an album or a song…" autocomplete="off" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="suggestions">
+      <ul class="suggestions" id="suggestions" role="listbox" hidden></ul>
     </div>
     <div class="chips" id="chips" role="group" aria-label="Filter by category"></div>
     <div class="result-count" id="count"></div>
