@@ -84,6 +84,19 @@ chipsEl.addEventListener("click", (e) => {
   render();
 });
 
+const orderToggleEl = document.getElementById("orderToggle");
+let reverseOrder = localStorage.getItem("elvisReverseOrder") === "true";
+orderToggleEl.setAttribute("aria-pressed", String(reverseOrder));
+orderToggleEl.textContent = reverseOrder ? "Oldest First" : "Newest First";
+
+orderToggleEl.addEventListener("click", () => {
+  reverseOrder = !reverseOrder;
+  orderToggleEl.setAttribute("aria-pressed", String(reverseOrder));
+  orderToggleEl.textContent = reverseOrder ? "Oldest First" : "Newest First";
+  localStorage.setItem("elvisReverseOrder", String(reverseOrder));
+  render();
+});
+
 const qInput = document.getElementById("q");
 const suggestionsEl = document.getElementById("suggestions");
 
@@ -337,8 +350,9 @@ function render(){
 
   const placed = new Set();
   const renderedSections = [];
+  const orderedEras = reverseOrder ? ERAS.slice().reverse() : ERAS;
 
-  ERAS.forEach((era, i) => {
+  orderedEras.forEach((era, i) => {
     const eraAlbums = era.albums
       .map(title => ALBUMS_BY_TITLE.get(title))
       .filter(album => visible.has(album) && !placed.has(album));

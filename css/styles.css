@@ -138,6 +138,14 @@
   .chip[aria-pressed="true"]{
     background:#fff; color:#000; border-color:#fff; font-weight:700;
   }
+  .order-toggle{
+    font-family:var(--font-body); font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em;
+    padding:6px 12px; border-radius:0; border:1px solid var(--line-strong);
+    background:transparent; color:var(--ink-dim); cursor:pointer; white-space:nowrap; flex:none;
+  }
+  .order-toggle[aria-pressed="true"]{
+    background:#fff; color:#000; border-color:#fff; font-weight:700;
+  }
   .result-count{font-size:0.78rem; color:var(--ink-faint); white-space:nowrap;}
 
   /* ---------- Era sections ---------- */
