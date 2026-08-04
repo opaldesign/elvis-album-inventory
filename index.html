@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Elvis Presley — RCA Victor Album Inventory</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="bg-collage" id="bgCollage" aria-hidden="true"></div>
+<div class="bg-scrim" aria-hidden="true"></div>
+
+<header class="hero">
+  <div class="eyebrow">RCA Victor · Album Ledger</div>
+  <h1>Elvis Presley</h1>
+  <p class="sub">A complete inventory of the studio and soundtrack albums released in his lifetime, 1956–1977 — click any album to flip it over and read the track list.</p>
+  <div class="stats">
+    <div class="stat"><div class="n" id="stat-albums">–</div><div class="l">Albums</div></div>
+    <div class="stat"><div class="n" id="stat-tracks">–</div><div class="l">Tracks</div></div>
+    <div class="stat"><div class="n">21</div><div class="l">Years</div></div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="controls-inner">
+    <div class="search">
+      <label for="q" style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0);">Search albums or tracks</label>
+      <input id="q" type="text" placeholder="Search an album or a song…" autocomplete="off">
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="Filter by category"></div>
+    <div class="result-count" id="count"></div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div id="eras"></div>
+  <div class="empty" id="empty" hidden>No albums or tracks match your search.</div>
+</div>
+
+<audio id="previewAudio" preload="none"></audio>
+
+<div class="now-playing" id="nowPlaying" hidden>
+  <div class="np-cover-wrap"><img class="np-cover" id="npCover" alt=""></div>
+  <div class="np-info">
+    <div class="np-track" id="npTrack"></div>
+    <div class="np-album" id="npAlbum"></div>
+  </div>
+  <button type="button" class="np-autoplay" id="npAutoplay" aria-pressed="false">Autoplay</button>
+  <button type="button" class="np-close" id="npClose" aria-label="Close player">✕</button>
+</div>
+
+<footer>
+  Cover art thumbnails are sourced from Wikipedia for identification purposes; background collage uses the same images, blurred. Track listings reflect original LP release configurations.<br>
+  30-second previews (▶) stream live from Apple's iTunes Search API where a match was found; some tracks have no available preview.<br>
+  Elvis Presley and RCA Victor are trademarks of their respective owners — this is an unofficial fan-made reference, not affiliated with either.
+</footer>
+
+
+<script src="js/data/covers.js"></script>
+<script src="js/data/track-previews.js"></script>
+<script src="js/data/albums.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
