@@ -1,5 +1,4 @@
 const CATS = {
-  rock:       { label: "Rock 'n' Roll" },
   soundtrack: { label: "Soundtrack" },
   studio:     { label: "Studio" },
   gospel:     { label: "Gospel" },
@@ -8,8 +7,8 @@ const CATS = {
 };
 
 const ALBUMS = [
-  { title:"Elvis Presley", year:1956, category:"rock", tracklist:["Blue Suede Shoes","I'm Counting on You","I Got a Woman","One-Sided Love Affair","I Love You Because","Just Because","Tutti Frutti","Tryin' to Get to You","I'm Gonna Sit Right Down and Cry (Over You)","I'll Never Let You Go (Little Darlin')","Blue Moon","Money Honey"] },
-  { title:"Elvis", year:1956, category:"rock", tracklist:["Rip It Up","Love Me","When My Blue Moon Turns to Gold Again","Long Tall Sally","First in Line","Paralyzed","So Glad You're Mine","Old Shep","Ready Teddy","Anyplace Is Paradise","How's the World Treating You?","How Do You Think I Feel?"] },
+  { title:"Elvis Presley", year:1956, category:"studio", tracklist:["Blue Suede Shoes","I'm Counting on You","I Got a Woman","One-Sided Love Affair","I Love You Because","Just Because","Tutti Frutti","Tryin' to Get to You","I'm Gonna Sit Right Down and Cry (Over You)","I'll Never Let You Go (Little Darlin')","Blue Moon","Money Honey"] },
+  { title:"Elvis", year:1956, category:"studio", tracklist:["Rip It Up","Love Me","When My Blue Moon Turns to Gold Again","Long Tall Sally","First in Line","Paralyzed","So Glad You're Mine","Old Shep","Ready Teddy","Anyplace Is Paradise","How's the World Treating You?","How Do You Think I Feel?"] },
   { title:"Loving You", year:1957, category:"soundtrack", tracklist:["Mean Woman Blues","(Let Me Be Your) Teddy Bear","Loving You","Got a Lot o' Livin' to Do!","Lonesome Cowboy","Hot Dog","Party","Blueberry Hill","True Love","Don't Leave Me Now","Have I Told You Lately That I Love You","I Need You So"] },
   { title:"Elvis' Christmas Album", year:1957, category:"christmas", tracklist:["Santa Claus Is Back in Town","White Christmas","Here Comes Santa Claus (Right Down Santa Claus Lane)","I'll Be Home for Christmas","Blue Christmas","Santa Bring My Baby Back (To Me)","(There'll Be) Peace in the Valley (For Me)","I Believe","Take My Hand, Precious Lord","It Is No Secret (What God Can Do)","O Little Town of Bethlehem","Silent Night"] },
   { title:"King Creole", year:1958, category:"soundtrack", tracklist:["King Creole","As Long as I Have You","Hard Headed Woman","Trouble","Dixieland Rock","Don't Ask Me Why","Lover Doll","Crawfish","Young Dreams","Steadfast, Loyal and True","New Orleans"] },
