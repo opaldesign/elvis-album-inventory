@@ -193,6 +193,7 @@ const npTrack = document.getElementById("npTrack");
 const npAlbum = document.getElementById("npAlbum");
 const npAutoplayBtn = document.getElementById("npAutoplay");
 const npCloseBtn = document.getElementById("npClose");
+const npPlayPauseBtn = document.getElementById("npPlayPause");
 
 let currentPlayingBtn = null;
 let currentCard = null;
@@ -212,12 +213,43 @@ npCloseBtn.addEventListener("click", () => {
   hideNowPlaying();
 });
 
+npPlayPauseBtn.addEventListener("click", () => {
+  if (!currentAlbum) return;
+  if (previewAudio.paused) {
+    resumePreview();
+  } else {
+    pausePreview();
+  }
+});
+
 function showNowPlaying(album, trackName){
   npCover.src = COVERS[album.title] || "";
   npTrack.textContent = trackName;
   npAlbum.textContent = album.title;
   nowPlayingEl.hidden = false;
   nowPlayingEl.classList.add("spinning");
+  npPlayPauseBtn.innerHTML = PAUSE_ICON;
+  npPlayPauseBtn.setAttribute("aria-label", "Pause");
+}
+
+function pausePreview(){
+  previewAudio.pause();
+  nowPlayingEl.classList.remove("spinning");
+  npPlayPauseBtn.innerHTML = PLAY_ICON;
+  npPlayPauseBtn.setAttribute("aria-label", "Play");
+  if (currentPlayingBtn) {
+    currentPlayingBtn.innerHTML = PLAY_ICON;
+  }
+}
+
+function resumePreview(){
+  previewAudio.play().catch(() => {});
+  nowPlayingEl.classList.add("spinning");
+  npPlayPauseBtn.innerHTML = PAUSE_ICON;
+  npPlayPauseBtn.setAttribute("aria-label", "Pause");
+  if (currentPlayingBtn) {
+    currentPlayingBtn.innerHTML = PAUSE_ICON;
+  }
 }
 
 function hideNowPlaying(){
@@ -286,8 +318,11 @@ function wirePlayButtons(card, album){
       if (btn.disabled) return;
 
       if (btn === currentPlayingBtn) {
-        stopPreview();
-        hideNowPlaying();
+        if (previewAudio.paused) {
+          resumePreview();
+        } else {
+          pausePreview();
+        }
         return;
       }
 

@@ -28,7 +28,7 @@
     line-height:1.5;
     -webkit-font-smoothing:antialiased;
   }
-  *:focus-visible{outline:2px solid #fff; outline-offset:3px; border-radius:2px;}
+  *:focus-visible{outline:2px solid #fff; outline-offset:3px; border-radius:0;}
 
   /* ---------- Background collage ---------- */
   .bg-collage{
@@ -89,14 +89,14 @@
   }
   .search input{
     width:100%; padding:9px 14px; font-size:0.92rem;
-    background:#000; border:1px solid var(--line); border-radius:8px;
+    background:#000; border:1px solid var(--line); border-radius:0;
     color:#fff; font-family:var(--font-body);
   }
   .search input::placeholder{color:var(--ink-faint);}
   .chips{display:flex; gap:8px; flex-wrap:wrap;}
   .chip{
     font-family:var(--font-body); font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em;
-    padding:6px 12px; border-radius:20px; border:1px solid var(--line-strong);
+    padding:6px 12px; border-radius:0; border:1px solid var(--line-strong);
     background:transparent; color:var(--ink-dim); cursor:pointer;
   }
   .chip[aria-pressed="true"]{
@@ -128,7 +128,7 @@
     perspective:1400px;
     min-height:380px;
     cursor:pointer;
-    border-radius:12px;
+    border-radius:0;
     opacity:1;
   }
   .card-inner{
@@ -148,7 +148,7 @@
   .face{
     position:absolute; inset:0; backface-visibility:hidden;
     -webkit-backface-visibility:hidden;
-    border-radius:12px; border:1px solid var(--line);
+    border-radius:0; border:1px solid var(--line);
     background:#000; box-shadow:var(--shadow);
     overflow:hidden; display:flex; flex-direction:column;
   }
@@ -200,7 +200,7 @@
   .year{font-variant-numeric:tabular-nums; font-size:0.78rem; color:var(--ink-dim); flex:none;}
   .cat-chip{
     font-size:0.58rem; text-transform:uppercase; letter-spacing:0.08em; padding:2px 8px;
-    border-radius:20px; color:var(--ink-dim); border:1px solid var(--line-strong);
+    border-radius:0; color:var(--ink-dim); border:1px solid var(--line-strong);
     overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
   }
   .flip-hint{font-size:0.72rem; color:var(--ink-faint); display:flex; align-items:center; gap:5px; flex:none;}
@@ -224,7 +224,7 @@
   .tracklist li.playing{color:#fff;}
 
   .play-btn{
-    flex:none; width:22px; height:22px; border-radius:50%;
+    flex:none; width:22px; height:22px; border-radius:0;
     border:1px solid var(--line-strong); background:transparent; color:var(--ink);
     display:flex; align-items:center; justify-content:center; cursor:pointer; padding:0;
   }
@@ -253,13 +253,13 @@
     position:fixed; left:50%; bottom:20px; transform:translateX(-50%);
     z-index:50; display:flex; align-items:center; gap:10px;
     background:rgba(0,0,0,0.92); backdrop-filter:blur(10px);
-    border:1px solid var(--line-strong); border-radius:999px;
+    border:1px solid var(--line-strong); border-radius:0;
     padding:6px 10px 6px 6px; box-shadow:var(--shadow);
     max-width:min(92vw, 420px);
   }
   .now-playing[hidden]{display:none;}
   .np-cover-wrap{
-    flex:none; width:40px; height:40px; border-radius:50%; overflow:hidden;
+    flex:none; width:60px; height:60px; border-radius:50%; overflow:hidden;
     border:1px solid var(--line-strong); background:var(--surface-2);
   }
   .np-cover{
@@ -276,14 +276,21 @@
   .np-album{
     font-size:0.68rem; color:var(--ink-faint); overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
   }
+  .np-playpause{
+    flex:none; width:30px; height:30px; border-radius:0; border:1px solid var(--line-strong);
+    background:transparent; color:var(--ink); cursor:pointer; display:flex; align-items:center; justify-content:center;
+    padding:0;
+  }
+  .np-playpause svg{display:block; margin-left:1px;}
+  .np-playpause:hover, .np-playpause:focus-visible{background:#fff; color:#000; border-color:#fff;}
   .np-autoplay{
     flex:none; font-size:0.6rem; text-transform:uppercase; letter-spacing:0.06em;
-    padding:6px 10px; border-radius:20px; border:1px solid var(--line-strong);
+    padding:6px 10px; border-radius:0; border:1px solid var(--line-strong);
     background:transparent; color:var(--ink-dim); cursor:pointer; white-space:nowrap;
   }
   .np-autoplay[aria-pressed="true"]{ background:#fff; color:#000; border-color:#fff; font-weight:700; }
   .np-close{
-    flex:none; width:24px; height:24px; border-radius:50%; border:1px solid var(--line-strong);
+    flex:none; width:24px; height:24px; border-radius:0; border:1px solid var(--line-strong);
     background:transparent; color:var(--ink); cursor:pointer; display:flex; align-items:center; justify-content:center;
     font-size:0.8rem; line-height:1; padding:0;
   }
